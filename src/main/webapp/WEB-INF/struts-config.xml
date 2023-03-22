@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC
+"-// Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+"http://jakarta.apache.org/struts/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+    <form-beans>
+        <form-bean name="user" type="com.struts.model.User" />
+    </form-beans>
+
+    <action-mappings>
+        <action path="/add-user" type="org.apache.struts.actions.ForwardAction" parameter="/user/addUser.jsp">
+        </action>
+        <action path="/add-user-post" type="com.struts.action.UserAction" name="user"
+                parameter="addUserPost" validate="true" input="/user/addUser.jsp">
+            <forward name="success" path="/list-user.html" redirect="true" />
+        </action>
+        <action path="/delete-user" type="com.struts.action.UserAction" name="user"
+                parameter="deleteUser">
+            <forward name="success" path="/list-user.html" redirect="true" />
+        </action>
+        <action path="/edit-user" type="com.struts.action.UserAction" name="user" parameter="updateUser">
+            <forward name="updateUser" path="/user/updateUser.jsp" />
+        </action>
+<!--        <action path="/view-user" type="com.struts.action.UserAction" name="user" parameter="viewUser"-->
+<!--                validate="true" input="/user/addUser.jsp">-->
+<!--            <forward name="viewUser" path="/user/viewUser.jsp" />-->
+<!--        </action>-->
+        <action path="/view-user" type="com.struts.action.UserAction" parameter="viewUser">
+            <forward name="viewUser" path="/user/viewUser.jsp" />
+        </action>
+
+        <action path="/list-user" type="com.struts.action.UserAction" parameter="listUser">
+            <forward name="listUser" path="/user/listUser.jsp" />
+        </action>
+
+        <action path="/hello" type="org.apache.struts.actions.ForwardAction" parameter="/welcome.jsp">
+        </action>
+    </action-mappings>
+
+    <message-resources parameter="messages"/>
+</struts-config>
+
